@@ -1,0 +1,54 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  grid-area: profile;
+  width: 100%;
+  max-width: 1326px;
+  margin: 0 auto;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.banner img {
+  width: 1000px;
+}
+
+.profileInfo {
+  display: flex;
+  margin-bottom: 50px;
+  margin-left: 40px;
+}
+
+.avatar {
+  margin-top: 42px;
+}
+
+.information {
+  margin-top: 64px;
+  margin-left: 56px;
+}
+
+.title{
+  color: black;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.data {
+  color: var(--black, #000);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.data:nth-child(0) {
+  margin-bottom: 30px;
+}
+

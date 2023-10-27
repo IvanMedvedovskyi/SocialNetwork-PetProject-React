@@ -1,0 +1,21 @@
+.main {
+  width: 100%;
+  display: flex;
+  grid-area: header;
+  background-color: var(--dark_violet, #33005C);;
+}
+
+.logo {
+  display: flex;
+  padding: 24px 20px 24px 80px;
+}
+
+.textLogo{
+  display: flex;
+  align-items: center;
+  color: var(--white, #FFF);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}

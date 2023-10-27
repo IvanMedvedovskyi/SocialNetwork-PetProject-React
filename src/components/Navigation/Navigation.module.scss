@@ -1,0 +1,36 @@
+a {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+
+.active{
+  a{
+    color: yellow;
+  }
+}
+
+.background {
+  background: var(--violet, #6406AD);
+  max-width: 260px;
+}
+
+.main {
+  display: grid;
+  grid-area: navigation;
+
+}
+
+.link {
+  padding-left: 80px;
+  padding-bottom: 48px;
+  color: var(--white, #FFF);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.link:nth-child(1) {
+  padding-top: 80px;
+}
