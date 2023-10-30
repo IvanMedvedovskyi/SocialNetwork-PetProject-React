@@ -1,0 +1,72 @@
+.container {
+  display: grid;
+  max-width: 1326px;
+  margin: 0 auto;
+}
+
+.backgroundContainer {
+  margin-top: 20px;
+}
+
+.background {
+  width: 1000px;
+}
+
+.avatar {
+  display: flex;
+  margin-top: -110px;
+  justify-content: center;
+}
+
+.photo {
+  width: 300px;
+  border-radius: 352px;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  margin-top: 7px;
+
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.contacts {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.contactsText {
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.informationContainer {
+  display: flex;
+  margin-left: 35px;
+  margin-top: 45px;
+}
+
+.link {
+  color: red;
+}

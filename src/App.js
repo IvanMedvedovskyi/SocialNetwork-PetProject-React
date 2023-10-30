@@ -9,6 +9,7 @@ import Settings from "./components/Settings/Settings";
 import {Navigate} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
+import UserProfileContainer from "./components/Users/UserProfile/UserProfileContainer";
 
 function App() {
     return (
@@ -23,6 +24,7 @@ function App() {
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>
+                        <Route path="/userProfile/:id?" element={<UserProfileContainer />}/>
                     </Routes>
             </div>
     );

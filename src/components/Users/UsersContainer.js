@@ -21,8 +21,8 @@ const UsersContainer = () => {
 
     const addNewCurrentPage = (event) => {
         const inputValue = newCurrentPage;
-        if( event.key === 'Enter') {
-            if(inputValue >=1 && inputValue <= countOfPages) {
+        if (event.key === 'Enter') {
+            if (inputValue >= 1 && inputValue <= countOfPages) {
                 dispatch(setCurrentPage(inputValue))
             } else {
                 alert("Not correct page number!")
@@ -49,7 +49,7 @@ const UsersContainer = () => {
                    addNewCurrentPage={addNewCurrentPage}
                    followUser={FOLLOW}
                    unfollowUser={UNFOLLOW}
-                   />)
+    />)
 }
 
 export default UsersContainer;

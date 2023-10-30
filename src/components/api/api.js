@@ -1,5 +1,6 @@
 import axios from "axios";
 import {setLoading, setTotalUsersCount, setUsers} from "../redux/users-reducer";
+import {setLoadingProfile, setUserProfile} from "../redux/profile-reducer";
 
 export const getUsers = (currentPage, count) => (dispatch) => {
     dispatch(setLoading(true));
@@ -9,6 +10,17 @@ export const getUsers = (currentPage, count) => (dispatch) => {
             dispatch(setLoading(false));
             dispatch(setUsers(response.data.items));
             dispatch(setTotalUsersCount(response.data.totalCount))
+        })
+        .catch((error) => console.log(error));
+}
+
+export const getUserProfile = (id) => (dispatch) => {
+    dispatch(setLoadingProfile(true));
+    const url = `https://social-network.samuraijs.com/api/1.0/profile/${id}`;
+    return axios.get(url)
+        .then (response => {
+            dispatch(setLoadingProfile(false));
+            dispatch(setUserProfile(response.data));
         })
         .catch((error) => console.log(error));
 }
