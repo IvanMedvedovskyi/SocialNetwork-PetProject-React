@@ -13,6 +13,7 @@ const UsersContainer = () => {
     const totalUserCount = useSelector((state) => state.users.totalUserCount);
     const countOfPages = Math.ceil(totalUserCount / count);
     const newCurrentPage = useSelector((state) => state.users.newCurrentPage);
+    const loading = useSelector((state) => state.users.loading)
 
     const handleInputChange = (event) => {
         const value = parseInt(event.target.value, 10);
@@ -49,6 +50,7 @@ const UsersContainer = () => {
                    addNewCurrentPage={addNewCurrentPage}
                    followUser={FOLLOW}
                    unfollowUser={UNFOLLOW}
+                   loading={loading}
     />)
 }
 

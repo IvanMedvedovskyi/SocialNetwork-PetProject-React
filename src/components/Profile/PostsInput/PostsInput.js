@@ -1,7 +1,7 @@
 import posts from './Posts.module.scss';
 import PostsOutput from "../PostsOutput/PostsOutput";
 
-const PostsInput = ({setInputChange, setNewPost, newPostText, postsList}) => {
+const PostsInput = ({setInputChange, setNewPost, newPostText, postsList, authPersonalDataProto}) => {
 
     return (
         <div className={posts.main}>
@@ -9,7 +9,7 @@ const PostsInput = ({setInputChange, setNewPost, newPostText, postsList}) => {
             <div><input value={newPostText} onChange={setInputChange} className={posts.input} type="text" placeholder='Enter a comment...'/></div>
             <div className={posts.sendBtnDiv}><button onClick={setNewPost} className={posts.sendButton}>Send comment</button></div>
 
-            <PostsOutput postsList={postsList}/>
+            <PostsOutput postsList={postsList} authPersonalDataProto={authPersonalDataProto}/>
         </div>
     )
 }

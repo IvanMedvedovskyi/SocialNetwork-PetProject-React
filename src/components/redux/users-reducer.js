@@ -22,13 +22,11 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isLoading: action.loading,
             };
-
         case SET_USERS:
             return {
                 ...state,
                 users: action.users,
             }
-
         case SET_CURRENT_PAGE:
             return {
                 ...state,

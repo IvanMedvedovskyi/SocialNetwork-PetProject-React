@@ -70,23 +70,46 @@
   gap: 10px;
   border-radius: 40px;
   border: 0;
-  background: var(--orange, #F19F00);
 
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color: #FFFFFF;
 
   transition: 0.3s;
+
+  &:hover {
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #E58311;
+    color: white;
+  }
 }
 
-.button > button:hover {
-  border: 1px solid black;
-  cursor: pointer;
-  transition: 0.3s;
-  background: #cbff00;
-  color: black;
+.follow {
+  background: var(--orange, #F19F00);
+  color: #FFFFFF;
+
+  &:hover {
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #E58311;
+    color: white;
+  }
+}
+
+.unfollow {
+  background: #FFBF42;
+  color: #FFFFFF;
+  &:hover {
+    border: 1px solid black;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #E58311;
+    color: white;
+  }
 }
 
 .pagesController {

@@ -25,6 +25,12 @@
 
 .avatar {
   margin-top: 42px;
+
+  & img {
+    width: 350px;
+    height: 350px;
+    border-radius: 248px;
+  }
 }
 
 .information {
@@ -46,6 +52,10 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+.data:not(:last-child) {
+  margin-bottom: 5px;
 }
 
 .data:nth-child(0) {

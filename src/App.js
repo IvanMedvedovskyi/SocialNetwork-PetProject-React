@@ -10,11 +10,12 @@ import {Navigate} from "react-router-dom";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import UserProfileContainer from "./components/Users/UserProfile/UserProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 function App() {
     return (
             <div className="App">
-                <Header/>
+                <HeaderContainer/>
                 <Navigation/>
                     <Routes>
                         <Route path="/" element={<Navigate to="/profile" />} />
