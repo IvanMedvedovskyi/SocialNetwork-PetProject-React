@@ -1,8 +1,8 @@
-import {getUsers} from "../api/api";
+import {getUsers, setFollowUser, setUnFollowUser} from "../api/api";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import Users from "./Users";
-import {noteNewCurrentPage, setCurrentPage, setFollow, setUnFollow} from "../redux/users-reducer";
+import {noteNewCurrentPage, setCurrentPage} from "../redux/users-reducer";
 
 
 const UsersContainer = () => {
@@ -32,11 +32,11 @@ const UsersContainer = () => {
     }
 
     const FOLLOW = (userId) => {
-        dispatch(setFollow(userId))
+        dispatch(setFollowUser(userId))
     }
 
     const UNFOLLOW = (userId) => {
-        dispatch(setUnFollow(userId))
+        dispatch(setUnFollowUser(userId))
     }
 
     useEffect(() => {

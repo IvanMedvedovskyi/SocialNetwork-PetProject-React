@@ -7,7 +7,7 @@ const PostsOutput = ({ postsList, authPersonalDataProto }) => {
             {postsList.map((post, index) => (
                 <div className={posts.comments__container} key={index}>
                     <div className="smallAvatar">
-                        <img src={authPersonalDataProto ? authPersonalDataProto : avatar} />
+                        <img className={posts.postOutPutIMG} src={authPersonalDataProto ? authPersonalDataProto : avatar} />
                     </div>
                     <div className={posts.comments}>
                         <h1>{post.message}</h1>

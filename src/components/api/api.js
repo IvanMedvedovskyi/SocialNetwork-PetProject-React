@@ -1,12 +1,14 @@
 import axios from "axios";
-import {setLoading, setTotalUsersCount, setUsers} from "../redux/users-reducer";
+import {setFollow, setLoading, setTotalUsersCount, setUnFollow, setUsers} from "../redux/users-reducer";
 import {setLoadingProfile, setUserProfile} from "../redux/profile-reducer";
 import {setAuthData, setAuthPersonalData} from "../redux/auth-reducer";
 
 export const getUsers = (currentPage, count) => (dispatch) => {
     dispatch(setLoading(true));
     const url = `https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${count}`;
-    return axios.get(url)
+    return axios.get(url, {
+        withCredentials: true
+    })
         .then(response => {
             dispatch(setLoading(false));
             dispatch(setUsers(response.data.items));
@@ -18,7 +20,9 @@ export const getUsers = (currentPage, count) => (dispatch) => {
 export const getUserProfile = (id) => (dispatch) => {
     dispatch(setLoadingProfile(true));
     const url = `https://social-network.samuraijs.com/api/1.0/profile/${id}`;
-    return axios.get(url)
+    return axios.get(url, {
+        withCredentials: true,
+    })
         .then (response => {
             dispatch(setLoadingProfile(false));
             dispatch(setUserProfile(response.data));
@@ -28,7 +32,6 @@ export const getUserProfile = (id) => (dispatch) => {
 
 export const getAuthDataAndPersonalData = () => (dispatch) => {
     const authUrl = `https://social-network.samuraijs.com/api/1.0/auth/me`;
-
     axios.get(authUrl,
         { withCredentials: true }
     )
@@ -47,6 +50,38 @@ export const getAuthDataAndPersonalData = () => (dispatch) => {
             }
         })
         .catch(error => console.log(error));
+}
+
+export const setFollowUser = (id) => (dispatch) => {
+    dispatch(setLoading(true));
+    const url = `https://social-network.samuraijs.com/api/1.0/follow/${id}`;
+    return axios.post(url, {}, {
+        withCredentials: true,
+        headers: {"API-KEY": "8746e110-1bed-4493-bdb9-67af6a296037"}
+    })
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setLoading(false))
+                dispatch(setFollow(id));
+            }
+        })
+        .catch((error) => console.log(error))
+}
+
+export const setUnFollowUser = (id) => (dispatch) => {
+    dispatch(setLoading(true));
+    const url = `https://social-network.samuraijs.com/api/1.0/follow/${id}`;
+    return axios.delete(url, {
+        withCredentials: true,
+        headers: {"API-KEY": "8746e110-1bed-4493-bdb9-67af6a296037"}
+    })
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setLoading(false))
+                dispatch(setUnFollow(id));
+            }
+        })
+        .catch((error) => console.log(error))
 }
 
 
