@@ -1,19 +1,18 @@
 import Header from "./Header";
-import {useEffect} from "react";
-import {getAuthDataAndPersonalData} from "../api/api";
 import {useDispatch, useSelector} from "react-redux";
+import {logout} from "../../assets/api/login-api";
 
 const HeaderContainer = () => {
-
-    const dispatch = useDispatch();
     const isAuth = useSelector((state) => state.auth.isAuth);
+    const dispatch = useDispatch();
     const personalDataPhoto = useSelector((state) => state.auth.authPersonalData.photos?.small);
 
-    useEffect(() => {
-        dispatch(getAuthDataAndPersonalData())
-    }, [dispatch]);
+    const handleLogout = () => {
+        dispatch(logout())
+    }
 
-    return <Header isAuth={isAuth} personalDataPhoto={personalDataPhoto}/>
+
+    return <Header handleLogout={handleLogout} isAuth={isAuth} personalDataPhoto={personalDataPhoto}/>
 }
 
 export default HeaderContainer;

@@ -1,9 +1,9 @@
 import header from './Header.module.scss'
 import logo from './headerImages/logo.png'
 import {NavLink} from "react-router-dom";
-import noAvaPhoto from './../../testImage/noUserPhoto.png'
+import noAvaPhoto from './../../assets/GlobalImage/noUserPhoto.png'
 
-const Header = ({isAuth, personalDataPhoto}) => {
+const Header = ({isAuth, personalDataPhoto, handleLogout}) => {
     return (
         <div className={header.main}>
             <div className={header.leftBlock}>
@@ -18,11 +18,22 @@ const Header = ({isAuth, personalDataPhoto}) => {
             <div className={header.rightBlock}>
                 {isAuth ?
                     (personalDataPhoto === null ?
-                        <img src={noAvaPhoto} alt="noAvaPhoto"/> : personalDataPhoto)
+                        <>
+                            <img src={noAvaPhoto} alt="noAvaPhoto"/>
+                            <button onClick={handleLogout} className={header.logout}>Log out</button>
+                        </>
+
+                        :
+                        <>
+                            personalDataPhoto
+                            <button onClick={handleLogout} className={header.logout}>Log out</button>
+                        </>
+                        )
                     :
                     <div className={header.login}>
                         <NavLink to={`/login`}>Login</NavLink>
-                    </div>}
+                    </div>
+                    }
             </div>
         </div>
     )

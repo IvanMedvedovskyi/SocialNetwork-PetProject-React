@@ -1,5 +1,5 @@
 import posts from './Postsoutput.module.scss'
-import avatar from './../../../testImage/noUserPhoto.png'
+import avatar from './../../../assets/GlobalImage/noUserPhoto.png'
 
 const PostsOutput = ({ postsList, authPersonalDataProto }) => {
     return (

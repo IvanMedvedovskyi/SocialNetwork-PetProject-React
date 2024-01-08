@@ -1,5 +1,5 @@
 import users from './Users.module.scss'
-import noUsersPhoto from "./../../testImage/noUserPhoto.png"
+import noUsersPhoto from "./../../assets/GlobalImage/noUserPhoto.png"
 import {NavLink} from "react-router-dom";
 import Preloader from "../Preloader/Preloader";
 
@@ -14,6 +14,7 @@ const Users = ({
                    followUser,
                    loading
                }) => {
+
     return (
         loading && !usersList ?
             <Preloader/> :
@@ -46,10 +47,9 @@ const Users = ({
                                name="input"
                                placeholder={currentPage}
                                onChange={(event) => handleInputChange(event)}
-                               onKeyPress={(event) => addNewCurrentPage(event)}/>
+                               onBlur={() => addNewCurrentPage()}/>
                         <span className={users.countOfPages}>of {countOfPages}</span>
                     </div>
-                    <div className={users.countOfPages}><h4>Press "Enter" to change</h4></div>
                 </div>
             </>
 

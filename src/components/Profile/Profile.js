@@ -1,9 +1,11 @@
 import profile from './Profile.module.scss'
 import banner from './profileImages/banner.png'
-import avatar from './../../testImage/noUserPhoto.png'
+import avatar from './../../assets/GlobalImage/noUserPhoto.png'
 import PostsInput from "./PostsInput/PostsInput";
+import Status from "./Status";
 
-const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPersonalData, authPersonalDataProto }) => {
+const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPersonalData, authPersonalDataProto, status }) => {
+
     return (
         <div className={profile.main}>
             <div className={profile.banner}>
@@ -16,7 +18,7 @@ const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPerson
                 <div className={profile.information}>
                     <div>
                         <h1 className={profile.title}>{authPersonalData.fullName}</h1>
-                        <div className={profile.data} style={{marginBottom: '35px'}}>{authPersonalData.aboutMe ? authPersonalData.aboutMe : "@nostatus"}</div>
+                        <Status status={status}/>
                         <div className={profile.data}>Looking for a job: {authPersonalData.lookingForAJob ? authPersonalData.lookingForAJob : "No information"}</div>
                         <div className={profile.data}>Facebook: {authPersonalData.contacts?.facebook ? authPersonalData.contacts?.facebook : "No information"}</div>
                         <div className={profile.data}>GitHub: {authPersonalData.contacts?.github ? authPersonalData.contacts?.github : "No information"}</div>

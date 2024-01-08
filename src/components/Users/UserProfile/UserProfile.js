@@ -1,6 +1,6 @@
 import userProfile from './UserProfile.module.scss'
 import background from './UserProfileImages/background.png'
-import noUserPhoto from './../../../testImage/noUserPhoto.png'
+import noUserPhoto from './../../../assets/GlobalImage/noUserPhoto.png'
 import Preloader from "../../Preloader/Preloader";
 
 const UserProfile = ({profile, loading}) => {

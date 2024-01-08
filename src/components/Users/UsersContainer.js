@@ -1,12 +1,15 @@
-import {getUsers, setFollowUser, setUnFollowUser} from "../api/api";
+import {setFollowUser, setUnFollowUser} from "../../assets/api/follow-unfollowAPI";
+import {getUsers} from "../../assets/api/users-api";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import Users from "./Users";
-import {noteNewCurrentPage, setCurrentPage} from "../redux/users-reducer";
-
+import {noteNewCurrentPage, setCurrentPage} from "./../../assets/redux/users-reducer";
+import {Navigate, useNavigate} from "react-router-dom";
 
 const UsersContainer = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const isAuth = useSelector(state => state.auth.isAuth)
     const currentPage = useSelector((state) => state.users.currentPage)
     const count = useSelector((state) => state.users.count);
     const users = useSelector((state) => state.users.users);
@@ -15,19 +18,18 @@ const UsersContainer = () => {
     const newCurrentPage = useSelector((state) => state.users.newCurrentPage);
     const loading = useSelector((state) => state.users.loading)
 
+
     const handleInputChange = (event) => {
         const value = parseInt(event.target.value, 10);
         dispatch(noteNewCurrentPage(value))
     }
 
-    const addNewCurrentPage = (event) => {
-        const inputValue = newCurrentPage;
-        if (event.key === 'Enter') {
-            if (inputValue >= 1 && inputValue <= countOfPages) {
-                dispatch(setCurrentPage(inputValue))
-            } else {
-                alert("Not correct page number!")
-            }
+    const addNewCurrentPage = () => {
+        let inputValue = newCurrentPage;
+        if (inputValue >= 1 && inputValue <= countOfPages) {
+            dispatch(setCurrentPage(inputValue))
+        }else {
+          alert("Not correct page number!");
         }
     }
 
@@ -42,6 +44,13 @@ const UsersContainer = () => {
     useEffect(() => {
         dispatch(getUsers(currentPage, count))
     }, [count, currentPage])
+
+    useEffect(() => {
+        if (!isAuth) {
+            navigate("/login");
+        }
+    }, [isAuth, navigate]);
+
 
     return (<Users usersList={users}
                    currentPage={currentPage}

@@ -1,7 +1,7 @@
 import UserProfile from "./UserProfile";
 import {useParams} from "react-router-dom";
 import {useEffect} from "react";
-import {getUserProfile} from "../../api/api";
+import {getUserProfile} from "../../../assets/api/users-api";
 import {useDispatch, useSelector} from "react-redux";
 
 const UserProfileContainer = () => {
