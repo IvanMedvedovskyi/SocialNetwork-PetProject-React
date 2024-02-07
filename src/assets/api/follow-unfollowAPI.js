@@ -1,27 +1,28 @@
 import {setFollow, setLoading, setUnFollow} from "../redux/users-reducer";
 import {instance} from "./api";
 
-export const setFollowUser = (id) => (dispatch) => {
+export const setFollowUser = (id) => async (dispatch) => {
     dispatch(setLoading(true));
-    instance
-        .post(`follow/${id}`)
-        .then((response) => {
-            if (response.data.resultCode === 0) {
-                dispatch(setLoading(false));
-                dispatch(setFollow(id));
-            }
-        })
-        .catch((error) => console.log(error));
+    try {
+        const response = await instance.post(`follow/${id}`);
+        if (response.data.resultCode === 0) {
+            dispatch(setLoading(false));
+            dispatch(setFollow(id));
+        }
+    } catch (error) {
+        console.error("Error when subscribing to user:", error.message);
+    }
 };
-export const setUnFollowUser = (id) => (dispatch) => {
+
+export const setUnFollowUser = (id) => async (dispatch) => {
     dispatch(setLoading(true));
-    instance
-        .delete(`follow/${id}`)
-        .then((response) => {
-            if (response.data.resultCode === 0) {
-                dispatch(setLoading(false));
-                dispatch(setUnFollow(id));
-            }
-        })
-        .catch((error) => console.log(error));
+    try {
+        const response = await instance.delete(`follow/${id}`);
+        if (response.data.resultCode === 0) {
+            dispatch(setLoading(false));
+            dispatch(setUnFollow(id));
+        }
+    } catch (error) {
+        console.error("Error unsubscribing from user:", error.message);
+    }
 };

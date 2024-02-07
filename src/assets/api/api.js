@@ -14,25 +14,45 @@ export const instance = axios.create({
 });
 
 
-export const getAuthDataAndPersonalData = () => (dispatch) => {
-    return instance.get("auth/me")
-        .then((authResponse) => {
-            if (authResponse.data.resultCode === 0) {
-                const { id, login, email } = authResponse.data.data;
-                dispatch(setAuthData(id, email, login, true));
+// export const getAuthDataAndPersonalData = () => (dispatch) => {
+//     return instance.get("auth/me")
+//         .then((authResponse) => {
+//             if (authResponse.data.resultCode === 0) {
+//                 const { id, login, email } = authResponse.data.data;
+//                 dispatch(setAuthData(id, email, login, true));
+//
+//                 return instance.get(`profile/${id}`);
+//             }
+//         })
+//         .then((personalDataResponse) => {
+//             if (personalDataResponse) {
+//                 dispatch(setAuthPersonalData(personalDataResponse.data));
+//             }
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//         });
+// };
 
-                return instance.get(`profile/${id}`);
-            }
-        })
-        .then((personalDataResponse) => {
-            if (personalDataResponse) {
+export const getAuthDataAndPersonalData = () => async (dispatch) => {
+    try {
+        const authResponse = await instance.get("auth/me");
+
+        if (authResponse.data.resultCode === 0) {
+            const { id, login, email } = authResponse.data.data;
+            dispatch(setAuthData(id, email, login, true));
+
+            const personalDataResponse = await instance.get(`profile/${id}`);
+
+            if (personalDataResponse.data) {
                 dispatch(setAuthPersonalData(personalDataResponse.data));
             }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        }
+    } catch (error) {
+        console.error("Error while retrieving user data:", error.message);
+    }
 };
+
 
 
 
