@@ -1,11 +1,11 @@
-import profile from './Profile.module.scss'
-import banner from './profileImages/banner.png'
-import avatar from './../../assets/GlobalImage/noUserPhoto.png'
+import profile from './Profile.module.scss';
+import banner from './profileImages/banner.png';
+import avatar from './../../assets/GlobalImage/noUserPhoto.png';
 import PostsInput from "./PostsInput/PostsInput";
 import Status from "./Status";
+import AddNewPhoto from "./AddNewPhoto";
 
-const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPersonalData, authPersonalDataProto, status }) => {
-
+const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPersonalData, authPersonalDataProto, status, onMainPhotoSelected}) => {
     return (
         <div className={profile.main}>
             <div className={profile.banner}>
@@ -14,6 +14,7 @@ const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPerson
             <div className={profile.profileInfo}>
                 <div className={profile.avatar}>
                     <img src={authPersonalData.photos?.large ? authPersonalData.photos?.large : avatar} alt="avatar"/>
+                    <AddNewPhoto onMainPhotoSelected={onMainPhotoSelected}/>
                 </div>
                 <div className={profile.information}>
                     <div>

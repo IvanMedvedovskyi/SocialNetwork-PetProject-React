@@ -2,7 +2,7 @@ import axios from "axios";
 
 import {
     setAuthData,
-    setAuthPersonalData,
+    setAuthPersonalData, setPersonalPhoto,
 } from "../redux/auth-reducer";
 
 export const instance = axios.create({
@@ -12,27 +12,6 @@ export const instance = axios.create({
         "API-KEY": "8746e110-1bed-4493-bdb9-67af6a296037",
     },
 });
-
-
-// export const getAuthDataAndPersonalData = () => (dispatch) => {
-//     return instance.get("auth/me")
-//         .then((authResponse) => {
-//             if (authResponse.data.resultCode === 0) {
-//                 const { id, login, email } = authResponse.data.data;
-//                 dispatch(setAuthData(id, email, login, true));
-//
-//                 return instance.get(`profile/${id}`);
-//             }
-//         })
-//         .then((personalDataResponse) => {
-//             if (personalDataResponse) {
-//                 dispatch(setAuthPersonalData(personalDataResponse.data));
-//             }
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         });
-// };
 
 export const getAuthDataAndPersonalData = () => async (dispatch) => {
     try {
@@ -53,6 +32,25 @@ export const getAuthDataAndPersonalData = () => async (dispatch) => {
     }
 };
 
+export const savePhoto = (file) => async (dispatch) => {
+    try{
+        const formData = new FormData()
+        formData.append("image", file);
+
+        const savePhotoResponse = await instance.put("/profile/photo", formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+
+        if(savePhotoResponse.data.resultCode === 0) {
+            await dispatch(setPersonalPhoto(savePhotoResponse.data.data.photos))
+            await dispatch(getAuthDataAndPersonalData())
+        }
+    } catch (error) {
+        console.log('Error while updating photo', error.message)
+    }
+}
 
 
 

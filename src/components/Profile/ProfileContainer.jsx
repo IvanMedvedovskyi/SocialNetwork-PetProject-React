@@ -4,6 +4,7 @@ import {addNewPost, onInputChange} from "./../../assets/redux/profile-reducer";
 import React, {useEffect} from "react";
 import {getStatus} from "../../assets/api/status.api";
 import {useNavigate} from "react-router-dom";
+import {savePhoto} from "../../assets/api/api";
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();
@@ -16,14 +17,19 @@ const ProfileContainer = () => {
     const authPersonalDataProto = useSelector((state) => state.auth.authPersonalData.photos?.small);
     const isAuth = useSelector(state => state.auth.isAuth)
 
-
-    let setInputChange = (event) => {
+    const setInputChange = (event) => {
         let text = event.target.value;
         dispatch(onInputChange(text));
     }
 
-    let setNewPost = () => {
+    const setNewPost = () => {
         dispatch(addNewPost())
+    }
+
+    const onMainPhotoSelected = (e) => {
+        if(e.target.files.length) {
+            dispatch(savePhoto(e.target.files[0]))
+        }
     }
 
     useEffect(() => {
@@ -40,6 +46,7 @@ const ProfileContainer = () => {
     }, [isAuth, navigate]);
 
     return (<Profile
+        onMainPhotoSelected={onMainPhotoSelected}
         status={status}
         authPersonalData={authPersonalData}
         authPersonalDataProto={authPersonalDataProto}

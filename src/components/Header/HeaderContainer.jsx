@@ -11,7 +11,6 @@ const HeaderContainer = () => {
         dispatch(logout())
     }
 
-
     return <Header handleLogout={handleLogout} isAuth={isAuth} personalDataPhoto={personalDataPhoto}/>
 }
 

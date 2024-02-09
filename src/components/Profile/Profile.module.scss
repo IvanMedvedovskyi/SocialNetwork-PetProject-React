@@ -24,13 +24,29 @@
 }
 
 .avatar {
+  position: relative;
   margin-top: 42px;
+
+  .addPhotoImg {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    width: 30px;
+    height: 50px;
+    border: 1px solid black;
+    padding: 0 10px;
+  }
 
   & img {
     width: 350px;
     height: 350px;
     border-radius: 248px;
   }
+  
+  input[type=file] {
+    display: none;
+  }
+
 }
 
 .information {

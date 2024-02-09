@@ -4,8 +4,6 @@ import noUserPhoto from './../../../assets/GlobalImage/noUserPhoto.png'
 import Preloader from "../../Preloader/Preloader";
 
 const UserProfile = ({profile, loading}) => {
-
-
     return (
         loading && !profile ?
             <Preloader/> :

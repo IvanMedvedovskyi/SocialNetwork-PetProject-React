@@ -25,7 +25,7 @@ const Header = ({isAuth, personalDataPhoto, handleLogout}) => {
 
                         :
                         <>
-                            personalDataPhoto
+                            <img src={personalDataPhoto} alt='personalAvatar'/>
                             <button onClick={handleLogout} className={header.logout}>Log out</button>
                         </>
                         )
