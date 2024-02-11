@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {useDispatch, useSelector} from "react-redux";
 import {login} from "../../assets/api/login-api";
@@ -8,6 +8,7 @@ import s from './Login.module.scss'
 const LoginForm = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector((state) => state.auth.isAuth);
+    const [error, setError] = useState('');
 
     if(isAuth) {
         return <Navigate to='/profile' />
@@ -20,7 +21,7 @@ const LoginForm = () => {
                 <Formik
                     initialValues={{ email: '', password: '', rememberMe: false }}
                     onSubmit={(values, { setSubmitting }) => {
-                        dispatch(login(values.email, values.password, values.rememberMe))
+                        dispatch(login(values.email, values.password, values.rememberMe, setError))
                         setSubmitting(false)
                     }}
                     validate={(values) => {
@@ -47,6 +48,7 @@ const LoginForm = () => {
                             <button className={s.btn} type="submit" disabled={isSubmitting}>
                                 Login
                             </button>
+                            {error && <div className={s.error}>{error}</div>}
                             <label className={s.label}>
                                 <Field type='checkbox' name='rememberMe' />
                                 Remember me

@@ -4,8 +4,13 @@ import avatar from './../../assets/GlobalImage/noUserPhoto.png';
 import PostsInput from "./PostsInput/PostsInput";
 import Status from "./Status";
 import AddNewPhoto from "./AddNewPhoto";
+import ProfileInformation from "./ProfileInformation";
+import {useState} from "react";
+import changeIcon from '../../assets/GlobalImage/changeIcon.svg'
+import ProfileInformationForm from "./ProfileInformationForm/ProfileInformationForm";
 
 const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPersonalData, authPersonalDataProto, status, onMainPhotoSelected}) => {
+    const [editMode, setEditMode] = useState(false);
     return (
         <div className={profile.main}>
             <div className={profile.banner}>
@@ -17,23 +22,19 @@ const Profile = ({setInputChange, setNewPost, newPostText, postsList, authPerson
                     <AddNewPhoto onMainPhotoSelected={onMainPhotoSelected}/>
                 </div>
                 <div className={profile.information}>
-                    <div>
-                        <h1 className={profile.title}>{authPersonalData.fullName}</h1>
-                        <Status status={status}/>
-                        <div className={profile.data}>Looking for a job: {authPersonalData.lookingForAJob ? authPersonalData.lookingForAJob : "No information"}</div>
-                        <div className={profile.data}>Facebook: {authPersonalData.contacts?.facebook ? authPersonalData.contacts?.facebook : "No information"}</div>
-                        <div className={profile.data}>GitHub: {authPersonalData.contacts?.github ? authPersonalData.contacts?.github : "No information"}</div>
-                        <div className={profile.data}>MainLink: {authPersonalData.contacts?.mainLink ? authPersonalData.contacts?.mainLink : "No information"}</div>
-                        <div className={profile.data}>Twitter: {authPersonalData.contacts?.twitter ? authPersonalData.contacts?.twitter : "No information"}</div>
-                        <div className={profile.data}>Vk: {authPersonalData.contacts?.vk ? authPersonalData.contacts?.vk : "No information"}</div>
-                        <div className={profile.data}>WebSite: {authPersonalData.contacts?.website ? authPersonalData.contacts?.website : "No information"}</div>
-                        <div className={profile.data}>YouTube: {authPersonalData.contacts?.youtube ? authPersonalData.contacts?.youtube : "No information"}</div>
-                    </div>
+                    {editMode ?
+                        <ProfileInformationForm authPersonalData={authPersonalData} editMode={setEditMode}/>
+                        : <div>
+                            <h1 className={profile.title}>{authPersonalData.fullName}</h1>
+                            <Status status={status}/>
+                            <ProfileInformation authPersonalData={authPersonalData} />
+                        </div>}
+                </div>
+                <div className={profile.changeInfo} onClick={() => setEditMode(true)}>
+                    <img src={changeIcon} alt="changeIcon"/>
                 </div>
             </div>
-
             <PostsInput setInputChange={setInputChange} setNewPost={setNewPost} newPostText={newPostText} postsList={postsList} authPersonalDataProto={authPersonalDataProto}/>
-
         </div>
     )
 }

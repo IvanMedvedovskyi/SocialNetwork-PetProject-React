@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {updateStatus} from "../../assets/api/status.api";
+import {updateStatus} from "../../assets/api/profile.api";
 import {useDispatch} from "react-redux";
 
 const Status = (props) => {
@@ -14,7 +14,6 @@ const Status = (props) => {
     const dispatch = useDispatch()
     const [editMode, setEditMode] = useState(false);
     const [statusText, setStatusText] = useState("");
-
 
     return (
         <div>

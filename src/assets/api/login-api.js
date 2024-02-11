@@ -1,11 +1,12 @@
 import {getAuthDataAndPersonalData, instance} from "./api";
 import {setAuthData, setAuthPersonalData} from "../redux/auth-reducer";
 
-const handleResponse = (response, successCallback) => {
+const handleResponse = (response, successCallback, errorCallback) => {
     if (response.data.resultCode === 0) {
         successCallback();
     } else {
-        console.error("Error:", response.data.messages);
+        const errorMessage = response.data.messages.join(', ');
+        errorCallback(errorMessage)
     }
 };
 
@@ -13,10 +14,10 @@ const handleNetworkError = (error) => {
     console.error("Произошла ошибка:", error.message);
 };
 
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email, password, rememberMe, errorCallback) => async (dispatch) => {
     try {
         const response = await instance.post("auth/login", { email, password, rememberMe });
-        handleResponse(response, () => dispatch(getAuthDataAndPersonalData()));
+        handleResponse(response, () => dispatch(getAuthDataAndPersonalData()), errorCallback);
     } catch (error) {
         handleNetworkError(error);
     }

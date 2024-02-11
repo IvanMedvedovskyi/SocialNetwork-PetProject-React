@@ -21,6 +21,14 @@
   display: flex;
   margin-bottom: 50px;
   margin-left: 40px;
+
+  .changeInfo {
+    margin-top: 42px;
+    
+    &:hover{
+      cursor: pointer;
+    }
+  }
 }
 
 .avatar {
