@@ -1,6 +1,7 @@
 import {setLoading, setTotalUsersCount, setUsers} from "../redux/users-reducer";
 import {setLoadingProfile, setUserProfile} from "../redux/profile-reducer";
-import {instance} from "./api";
+import {instance} from "./instance";
+
 
 export const getUsers = (currentPage, count) => (dispatch) => {
     dispatch(setLoading(true));

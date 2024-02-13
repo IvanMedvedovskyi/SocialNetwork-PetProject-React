@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {updateStatus} from "../../assets/api/profile.api";
+import {updateStatus} from "../../assets/api/profile-api";
 import {useDispatch} from "react-redux";
 
 const Status = (props) => {

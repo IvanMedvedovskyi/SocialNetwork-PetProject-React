@@ -2,9 +2,9 @@ import Profile from "./Profile";
 import {useDispatch, useSelector} from "react-redux";
 import {addNewPost, onInputChange} from "./../../assets/redux/profile-reducer";
 import React, {useEffect} from "react";
-import {getStatus} from "../../assets/api/profile.api";
+import {getStatus} from "../../assets/api/profile-api";
 import {useNavigate} from "react-router-dom";
-import {savePhoto} from "../../assets/api/api";
+import {savePhoto} from "../../assets/api/profile-api";
 
 const ProfileContainer = () => {
     const dispatch = useDispatch();

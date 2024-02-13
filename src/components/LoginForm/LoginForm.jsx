@@ -8,6 +8,7 @@ import s from './Login.module.scss'
 const LoginForm = () => {
     const dispatch = useDispatch();
     const isAuth = useSelector((state) => state.auth.isAuth);
+    const captchaUrl = useSelector((state) => state.auth.captchaUrl)
     const [error, setError] = useState('');
 
     if(isAuth) {
@@ -19,9 +20,9 @@ const LoginForm = () => {
             <div style={{width: "100%", maxWidth: "425px"}}>
                 <h1 className={s.title}>Sign up:</h1>
                 <Formik
-                    initialValues={{ email: '', password: '', rememberMe: false }}
+                    initialValues={{ email: '', password: '', rememberMe: false, captcha: '' }}
                     onSubmit={(values, { setSubmitting }) => {
-                        dispatch(login(values.email, values.password, values.rememberMe, setError))
+                        dispatch(login(values.email, values.password, values.rememberMe, setError, values.captcha))
                         setSubmitting(false)
                     }}
                     validate={(values) => {
@@ -45,6 +46,11 @@ const LoginForm = () => {
                                 className={s.input}
                                 type="password" name="password" placeholder='Password'/>
                             <ErrorMessage name="password" component="div" className={s.errorPassword}/>
+                            {captchaUrl && <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+                                <img style={{width: "150px"}} src={captchaUrl} alt="captcha"/>
+                                <Field className={s.input.captcha} type='text' name='captcha' placeholder='Enter the captcha'/>
+                                <ErrorMessage name="captcha" component="div"/>
+                            </div>}
                             <button className={s.btn} type="submit" disabled={isSubmitting}>
                                 Login
                             </button>

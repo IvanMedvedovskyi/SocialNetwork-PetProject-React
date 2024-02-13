@@ -1,5 +1,5 @@
 import {setFollow, setLoading, setUnFollow} from "../redux/users-reducer";
-import {instance} from "./api";
+import {instance} from "./instance";
 
 export const setFollowUser = (id) => async (dispatch) => {
     dispatch(setLoading(true));

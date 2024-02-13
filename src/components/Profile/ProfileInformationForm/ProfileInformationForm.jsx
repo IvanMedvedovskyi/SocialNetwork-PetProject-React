@@ -2,7 +2,7 @@ import {Form, Formik} from "formik";
 import React from "react";
 import FormSection from "./FormSection";
 import {useDispatch} from "react-redux";
-import {updateProfileInfo} from "../../../assets/api/profile.api";
+import {updateProfileInfo} from "../../../assets/api/profile-api";
 
 const ProfileInformationForm = ({authPersonalData, editMode}) => {
     const dispatch = useDispatch();

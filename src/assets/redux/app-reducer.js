@@ -1,4 +1,4 @@
-import {getAuthDataAndPersonalData} from "../api/api";
+import {getAuthDataAndPersonalData} from "../api/profile-api";
 
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS';
 

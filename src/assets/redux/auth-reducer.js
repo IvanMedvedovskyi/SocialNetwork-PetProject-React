@@ -1,12 +1,14 @@
 const SET_AUTH_DATA = 'SET_AUTH_DATA';
 const SET_PERSONAL_DATA = 'SET_PERSONAL_DATA';
 const SET_PHOTO = 'SET_PHOTO';
+const GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS';
 
 const initialState = {
     userId: null,
     email: null,
     login: null,
     isAuth: false,
+    captchaUrl: null,
     authPersonalData: [],
 }
 
@@ -28,6 +30,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 authPersonalData: {...state.authPersonalData, photos: [action.photo]}
             }
+        case GET_CAPTCHA_URL_SUCCESS:
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl,
+            }
         default:
             return state;
     }
@@ -47,6 +54,10 @@ export const setAuthPersonalData = (authPersonalData) => ({
 export const setPersonalPhoto = (photo) => ({
     type: SET_PHOTO,
     photo,
+})
+export const getCaptchaSuccess = (captchaUrl) => ({
+    type: GET_CAPTCHA_URL_SUCCESS,
+    captchaUrl,
 })
 
 
